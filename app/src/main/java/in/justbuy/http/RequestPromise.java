@@ -13,7 +13,7 @@ public abstract class RequestPromise {
     public abstract void onSuccess(String data, int status);
 
     public void onFailure(Exception cause, int status) {
-        Log.w("HTTP_STATUS", status + "");
+        Log.w("HTTP_STATUS", status + " " + cause.getMessage());
     }
 
     protected Exception handleKnownCases(Exception cause) {

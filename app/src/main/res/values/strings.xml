@@ -2,5 +2,13 @@
     <string name="app_name">Just Buy</string>
 
     <string name="server_scheme">http</string>
-    <string name="server_url">127.0.0.1</string>
+    <string name="server_url">172.20.200.60:8080</string>
+
+    <string name="title_activity_login">LoginActivity</string>
+    <string name="title_activity_view_ad">ViewAdActivity</string>
+
+    <string name="hello_world">Hello world!</string>
+    <string name="action_settings">Settings</string>
+    <string name="title_activity_list_ad">Ad Listing</string>
+
 </resources>

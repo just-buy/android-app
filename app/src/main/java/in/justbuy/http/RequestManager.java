@@ -7,6 +7,7 @@ import android.net.NetworkInfo;
 import android.net.Uri;
 import android.os.AsyncTask;
 import android.support.v4.widget.ContentLoadingProgressBar;
+import android.util.Log;
 
 import com.google.inject.Inject;
 
@@ -118,9 +119,6 @@ public class RequestManager extends AsyncTask<Map<String, String>, Void, Void> {
     protected void setConnectionProperties() {
         // Setting Connection Parameters
         connection.setInstanceFollowRedirects(false);
-//      connection.addRequestProperty("Accept-Language", "en-US,en;q=0.8");
-//      connection.addRequestProperty("User-Agent", "Mozilla");
-        connection.addRequestProperty("Referer", "partners.uber.com");
     }
 
     private void createNewConnection(Map<String, String> queryParams) throws Exception {
@@ -139,6 +137,8 @@ public class RequestManager extends AsyncTask<Map<String, String>, Void, Void> {
         connection = (HttpURLConnection) url.openConnection();
 
         setConnectionProperties();
+
+        Log.i("URL", method.toString() + " " + url.toString());
     }
 
     /* (non-Javadoc)
