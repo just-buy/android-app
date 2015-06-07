@@ -1,9 +1,11 @@
 package in.justbuy;
 
 import android.content.Intent;
+import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
 import android.widget.ListView;
+import android.widget.Toast;
 
 import com.google.inject.Inject;
 import com.google.inject.Provider;
@@ -13,6 +15,7 @@ import java.util.List;
 import in.justbuy.http.RequestManager;
 import in.justbuy.http.RequestPromise;
 import in.justbuy.model.Ad;
+import in.justbuy.model.Category;
 import in.justbuy.utils.AdListAdapter;
 import in.justbuy.utils.Parsers;
 import roboguice.activity.RoboListActivity;
@@ -33,8 +36,21 @@ public class ListAdActivity extends RoboListActivity {
         adapter = new AdListAdapter(this);
         setListAdapter(adapter);
 
-        getAds(1);
-        getAds(2);
+        int categoryId = 0;
+
+        Bundle extras = getIntent().getExtras();
+        if (extras != null) {
+            categoryId = extras.getInt("id");
+        }
+
+        if (categoryId == 0) {
+            Toast.makeText(this, "Invalid Category ID", Toast.LENGTH_SHORT).show();
+            finish();
+        }
+
+        loadCategory(categoryId);
+
+        getAds(categoryId);
     }
 
     @Override
@@ -61,6 +77,20 @@ public class ListAdActivity extends RoboListActivity {
                 List<Ad> ads = Parsers.parseAds(data);
                 adapter.addAll(ads);
                 adapter.notifyDataSetChanged();
+            }
+        });
+        requestManager.execute(null, null);
+    }
+
+    private void loadCategory(int id) {
+        RequestManager requestManager = requestManagerProvider.get();
+        requestManager.setResourcePath("/category/" + id);
+        requestManager.setToDo(new RequestPromise() {
+            @Override
+            public void onSuccess(String data, int status) {
+                Log.i("CAT", data);
+                Category category = Parsers.parseCategory(data);
+                getActionBar().setTitle(category.name);
             }
         });
         requestManager.execute(null, null);

@@ -13,5 +13,6 @@ public class Ad {
     public int value;
     public String filePath;
     public boolean soldOut;
+    public User user;
 
 }

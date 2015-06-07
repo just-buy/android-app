@@ -50,7 +50,7 @@
                     android:layout_weight="2"
                     android:gravity="right"
                     android:paddingRight="@dimen/activity_vertical_margin"
-                    android:text="Value"
+                    android:text="Price"
                     android:textStyle="bold" />
 
                 <TextView

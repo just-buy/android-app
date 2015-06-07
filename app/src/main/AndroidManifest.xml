@@ -29,6 +29,9 @@
         <activity
             android:name=".ListAdActivity"
             android:label="@string/title_activity_list_ad" />
+        <activity
+            android:name=".ListCategoryActivity"
+            android:label="@string/title_activity_list_category"></activity>
     </application>
 
 </manifest>

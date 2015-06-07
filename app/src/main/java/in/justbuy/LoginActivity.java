@@ -2,7 +2,6 @@ package in.justbuy;
 
 import android.content.Intent;
 import android.util.Log;
-import android.view.View;
 import android.widget.AutoCompleteTextView;
 import android.widget.Button;
 import android.widget.EditText;
@@ -44,17 +43,14 @@ public class LoginActivity extends RoboActivity {
         emailView.setText("aritra.saha@flipkart.com");
         passwordView.setText("aritra123");
 
-        submitView.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                String email = emailView.getText().toString();
-                String password = passwordView.getText().toString();
+        submitView.setOnClickListener(v -> {
+            String email = emailView.getText().toString();
+            String password = passwordView.getText().toString();
 
-                Log.i("EMAIL", emailView.getText().toString());
-                Log.i("PASSWORD", passwordView.getText().toString());
+            Log.i("EMAIL", emailView.getText().toString());
+            Log.i("PASSWORD", passwordView.getText().toString());
 
-                login(email, password);
-            }
+            login(email, password);
         });
     }
 
@@ -82,7 +78,7 @@ public class LoginActivity extends RoboActivity {
     }
 
     private void openAdListing() {
-        Intent intent = new Intent(this, ListAdActivity.class);
+        Intent intent = new Intent(this, ListCategoryActivity.class);
         startActivity(intent);
     }
 
